@@ -25,7 +25,7 @@ public class Benchmark {
 		DBConnector connector = new DBConnector(); 
 		connector.connectToDB(url,database,user,pw);
 		System.out.println("verbunden: "+ (System.currentTimeMillis()-t1)+" ms");
-		stmnt = connector.connection.createStatement();
+		stmnt = connector.getConnection().createStatement();
 
 	}
 
