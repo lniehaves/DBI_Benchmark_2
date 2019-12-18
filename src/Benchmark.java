@@ -25,7 +25,7 @@ public class Benchmark {
 		
 
 		System.out.println("Beginne mit Transaktionen");
-		for(int i =0; i<=5;i++)
+		for(int i =0; i<5;i++)
 		{
 			Loaddriver ld = new Loaddriver();
 			ld.start();
