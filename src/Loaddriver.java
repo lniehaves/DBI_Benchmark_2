@@ -41,6 +41,26 @@ public class Loaddriver extends Thread {
 	}
 	
 	public void transactions() throws SQLException, InterruptedException {	
+		while(System.currentTimeMillis()-t1 <= 240000) {
+			while(running)
+			{
+				//Zufallszahl zur Bestimmung der Transaktion
+				int zZahl = (int)(Math.random()*100+1);
+				if(zZahl <36)
+				{
+					this.txBalance();
+				}
+				else if(zZahl<86)
+				{
+					this.txDeposit();
+				}
+				else
+				{
+					this.txAnalysis();
+				}
+				Thread.sleep(50);
+			}
+		}
 		while(running)
 		{
 			//Zufallszahl zur Bestimmung der Transaktion
@@ -61,7 +81,7 @@ public class Loaddriver extends Thread {
 				txCount++;
 			}
 			Thread.sleep(50);
-			if(System.currentTimeMillis()-t1 == 300000)
+			if(System.currentTimeMillis()-t1 >= 540000)
 			{
 				this.setRunning(false);
 				System.out.println(txCount +" Transaktionen");

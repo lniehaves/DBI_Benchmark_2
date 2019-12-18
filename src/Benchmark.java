@@ -19,18 +19,19 @@ public class Benchmark {
 		connector = new DBConnector(); 
 		connector.connectToDB(daten.getUrl(),daten.getDatabase(),daten.getUser(),daten.getPw());
 		System.out.println("verbunden: "+vergangeneZeit(t1) +" ms");
+		stmnt = connector.getConnection().createStatement();
+		stmnt.executeQuery("delete from history");
+		System.out.println("history geleert");
 		
-		
-		if(vergangeneZeit(t1)>= 10)
+
+		System.out.println("Beginne mit Transaktionen");
+		for(int i =0; i<=5;i++)
 		{
-			System.out.println("Beginne mit Transaktionen");
-			for(int i =0; i<6;i++)
-			{
-				Loaddriver ld = new Loaddriver();
-				ld.start();
-			}
+			Loaddriver ld = new Loaddriver();
+			ld.start();
 		}
-		if(vergangeneZeit(t1)==600000)
+		
+		if(vergangeneZeit(t1)>=600000)
 		{
 			System.exit(0);
 		}
